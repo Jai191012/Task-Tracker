@@ -1,14 +1,55 @@
 [
     {
-        "Descripci\u00f3n": "JAHFIADF",
-        "Estado": "LJSHFD",
-        "Creado con fecha": "2025-04-06 03:22:00",
-        "Actualizado con fecha": "2025-06-01 02:54:00"
+        "DescripciÃ³n": "DSA",
+        "Estado": "En proceso",
+        "Creado con fecha": "2024-06-01 02:00:00",
+        "Actualizado con fecha": [
+            "2025-04-30 15:06:21.688818"
+        ]
     },
     {
-        "Descripci\u00f3n": "DSA",
-        "Estado": "HGF",
-        "Creado con fecha": "2024-06-01 02:00:00",
-        "Actualizado con fecha": "2025-04-01 03:00:00"
+        "DescripciÃ³n": "Ã±kasjd",
+        "Estado": "En proceso",
+        "Creado con fecha": "2025-04-30 08:59:24.595224",
+        "Actualizado con fecha": [
+            "2025-04-30 09:21:09.669768"
+        ]
+    },
+    {
+        "DescripciÃ³n": "jksdfn",
+        "Estado": "Culminada",
+        "Creado con fecha": "2025-04-30 09:42:02.506630",
+        "Actualizado con fecha": [
+            "2025-04-30 15:02:43.790974",
+            "2025-04-30 15:04:14.324267"
+        ]
+    },
+    {
+        "1": "Sin gestiÃ³n",
+        "2": "En proceso",
+        "3": "Culminada",
+        "Estado": "En proceso",
+        "Creado con fecha": "2025-04-30 15:48:12.338440"
+    },
+    {
+        "1": "Sin gestiÃ³n",
+        "2": "En proceso",
+        "3": "Culminada",
+        "Estado": "Sin gestiÃ³n",
+        "Creado con fecha": "2025-04-30 15:50:46.227617"
+    },
+    {
+        "Descripción": "merienda ",
+        "Estado": "En proceso",
+        "Creado con fecha": "2025-05-02 10:21:",
+        "Actualizado con fecha": ""
+    },
+    {
+        "Descripción": "comer 1",
+        "Estado": "Culminada",
+        "Creado con fecha": "2025-05-05T08:44:43.635926",
+        "Actualizado con fecha": [
+            "2025-05-05T08:45:14.777680"
+        ]
     }
 ]

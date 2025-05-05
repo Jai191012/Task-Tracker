@@ -7,15 +7,15 @@ archivo_json = "tareas.json"
 
 def cargar_tareas():
     try:
-        with open(archivo_json, "r") as archivo:
+        with open(archivo_json, "r", encoding="utf-8") as archivo:
             global tareas
             tareas = json.load(archivo)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         tareas = []
 
 def guardar_tareas():
-    with open(archivo_json, "w") as archivo:
-        json.dump(tareas, archivo, default=str, indent=4)
+    with open(archivo_json, "w", encoding="utf-8") as archivo:
+        json.dump(tareas, archivo, indent=4, ensure_ascii=False, default=str)
 
 def ingresoMenu():
     cargar_tareas()
@@ -46,23 +46,36 @@ def ingresoMenu():
         else:
             print("Opción inválida. Por favor, ingrese un número entre 1 y 5.")
 
-def obtenerFecha(prompt):
-    while True:
-        try:
-            fecha = input(prompt)
-            return datetime.strptime(fecha, "%Y-%m-%d %H:%M")
-        except ValueError:
-            print("Fecha inválida. Por favor, ingrese una fecha en formato YYYY-MM-DD HH:MM")
-
 def agregarTarea():
     tarea = {}
     tarea["Descripción"] = input("Ingrese descripción: ")
-    tarea["Estado"] = input("Ingrese estado: ")
-    tarea["Creado con fecha"] = str(obtenerFecha("Ingrese fecha de creación (YYYY-MM-DD HH:MM): "))
-    tarea["Actualizado con fecha"] = str(obtenerFecha("Ingrese fecha de actualización (YYYY-MM-DD HH:MM): "))
+
+    opciones_estado = {
+        "1": "Sin gestión",
+        "2": "En proceso",
+        "3": "Culminada"
+    }
+
+    while True:
+        print("\nSeleccione el estado de la tarea:")
+        for clave, valor in opciones_estado.items():
+            print(f"{clave}) {valor}")
+        opcion = input("Opción: ").strip()
+        if opcion in opciones_estado:
+            tarea["Estado"] = opciones_estado[opcion]
+            break
+        else:
+            print("Opción inválida. Intente nuevamente.")
+    
+    tarea["Creado con fecha"] = datetime.now().isoformat()
+    tarea["Actualizado con fecha"] = []
+
     tareas.append(tarea)
     guardar_tareas()
-    print("Tarea agregada con éxito!")
+
+    print(f"\nTarea {len(tareas)}:")
+    for campo in listado:
+        print(f"{campo}: {tarea.get(campo, '')}")
 
 def mostrarTareas():
     cargar_tareas()
@@ -71,32 +84,63 @@ def mostrarTareas():
     else:
         for i, tarea in enumerate(tareas, start=1):
             print(f"Tarea {i}:")
-            for campo, valor in tarea.items():
-                print(f"{campo}: {valor}")
+            for campo in listado:
+                valor = tarea.get(campo, "")
+                if campo == "Actualizado con fecha" and isinstance(valor, list):
+                    print(f"{campo}:")
+                    for fecha in valor:
+                        print(f"  - {fecha}")
+                else:
+                    print(f"{campo}: {valor}")
             print()
 
 def editarTarea():
     cargar_tareas()
     if not tareas:
         print("No hay tareas registradas.")
-    else:
-        mostrarTareas()
-        while True:
-            try:
-                indice = int(input("Ingrese el número de la tarea a editar: ")) - 1
-                if 0 <= indice < len(tareas):
-                    tarea = tareas[indice]
-                    tarea["Descripción"] = input("Ingrese nueva descripción: ")
-                    tarea["Estado"] = input("Ingrese nuevo estado: ")
-                    tarea["Creado con fecha"] = str(obtenerFecha("Ingrese nueva fecha de creación (YYYY-MM-DD HH:MM): "))
-                    tarea["Actualizado con fecha"] = str(obtenerFecha("Ingrese fecha de actualización (YYYY-MM-DD HH:MM): "))
-                    guardar_tareas()
-                    print("Tarea editada con éxito!")
-                    break
-                else:
-                    print("Índice inválido. Por favor, ingrese un número válido.")
-            except ValueError:
-                print("Índice inválido. Por favor, ingrese un número.")
+        return
+
+    mostrarTareas()
+    while True:
+        try:
+            indice = int(input("Ingrese el número de la tarea a editar (o 0 para cancelar): ")) - 1
+
+            if indice == -1:
+                print("Edición cancelada.")
+                return
+
+            if 0 <= indice < len(tareas):
+                tarea = tareas[indice]
+                print(f"\nEditando tarea: {tarea.get('Descripción', '')}")
+                estados = {
+                    "1": "Sin gestión",
+                    "2": "En proceso",
+                    "3": "Culminada"
+                }
+
+                while True:
+                    print("\nSeleccione el nuevo estado:")
+                    for clave, valor in estados.items():
+                        print(f"{clave}) {valor}")
+                    opcion = input("Opción: ").strip()
+
+                    if opcion in estados:
+                        tarea["Estado"] = estados[opcion]
+                        break
+                    else:
+                        print("Opción inválida. Intente nuevamente.")
+
+                if "Actualizado con fecha" not in tarea or not isinstance(tarea.get("Actualizado con fecha"), list):
+                    tarea["Actualizado con fecha"] = []
+                tarea["Actualizado con fecha"].append(datetime.now().isoformat())
+
+                guardar_tareas()
+                print("Tarea editada con éxito!")
+                break
+            else:
+                print("Índice inválido. Por favor, ingrese un número válido.")
+        except ValueError:
+            print("Índice inválido. Por favor, ingrese un número.")
 
 def eliminarTarea():
     cargar_tareas()
