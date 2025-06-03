@@ -32,13 +32,6 @@
         "Creado con fecha": "2025-04-30 15:48:12.338440"
     },
     {
-        "1": "Sin gestiÃ³n",
-        "2": "En proceso",
-        "3": "Culminada",
-        "Estado": "Sin gestiÃ³n",
-        "Creado con fecha": "2025-04-30 15:50:46.227617"
-    },
-    {
         "Descripción": "merienda ",
         "Estado": "En proceso",
         "Creado con fecha": "2025-05-02 10:21:",
@@ -49,7 +42,44 @@
         "Estado": "Culminada",
         "Creado con fecha": "2025-05-05T08:44:43.635926",
         "Actualizado con fecha": [
-            "2025-05-05T08:45:14.777680"
+            "2025-05-05T08:45:14.777680",
+            "2025-06-03T09:40:49.120907"
+        ]
+    },
+    {
+        "Descripción": "cenar ",
+        "Estado": "Sin gestión",
+        "Creado con fecha": "2025-06-03T09:39:36.423894",
+        "Actualizado con fecha": []
+    },
+    {
+        "Descripción": "ajsdkjb",
+        "Estado": "Sin gestión",
+        "Creado con fecha": "2025-06-03T10:05:26.527130",
+        "Actualizado con fecha": []
+    },
+    {
+        "Descripción": "dgfdg",
+        "Estado": "En proceso",
+        "Creado con fecha": "2025-06-03T10:07:47.647717",
+        "Actualizado con fecha": [
+            "03/06/2025 11:41"
+        ]
+    },
+    {
+        "Descripción": "kjhoj",
+        "Estado": "Culminada",
+        "Creado con fecha": "2025-06-03T10:10:19.094506",
+        "Actualizado con fecha": [
+            "03/06/2025 11:41"
+        ]
+    },
+    {
+        "Descripción": "jfj",
+        "Estado": "Culminada",
+        "Creado con fecha": "03/06/2025 10:21",
+        "Actualizado con fecha": [
+            "03/06/2025 11:40"
         ]
     }
 ]
